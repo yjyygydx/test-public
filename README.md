@@ -9,7 +9,7 @@ Hysteria2安装脚本：
 ```
 bash <(curl -fsSL https://raw.githubusercontent.com/yjyygydx/test-public/main/hysteria2.sh)
 ```
-Hysteria2卸载：
+卸载Hysteria2：
 ```
 bash <(curl -fsSL https://get.hy2.sh/) --remove
 ```
