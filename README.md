@@ -4,6 +4,7 @@ Acme证书申请：
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/yjyygydx/test-public/main/acme.sh && bash acme.sh
 ```
+## 分界线
 
 Hysteria2.sh安装脚本推荐ubuntu系统：
 ```
