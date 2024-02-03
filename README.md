@@ -4,6 +4,10 @@ Acme证书申请：
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/yjyygydx/test-public/main/acme.sh && bash acme.sh
 ```
+Hysteria2：
+```
+wget -N --no-check-certificate https://raw.githubusercontent.com/yjyygydx/test-public/main/hysteria2/hysteria.sh && bash hysteria.sh
+```
 
 ## 联系方式
 
