@@ -64,7 +64,7 @@ inst_cert(){
         cert_path="/root/cert.crt"
         key_path="/root/private.key"
 
-        chmod -R 777 /root # 让 Hysteria 主程序访问到 /root 目录
+        chmod a+x /root # 让 Hysteria 主程序访问到 /root 目录
 
         if [[ -f /root/cert.crt && -f /root/private.key ]] && [[ -s /root/cert.crt && -s /root/private.key ]] && [[ -f /root/ca.log ]]; then
             domain=$(cat /root/ca.log)
@@ -86,23 +86,7 @@ inst_cert(){
             read -p "请输入需要申请证书的域名：" domain
             [[ -z $domain ]] && red "未输入域名，无法执行操作！" && exit 1
             green "已输入的域名：$domain" && sleep 1
-            domainIP=$(dig @8.8.8.8 +time=2 +short "$domain" 2>/dev/null)
-            if echo $domainIP | grep -q "network unreachable\|timed out" || [[ -z $domainIP ]]; then
-                domainIP=$(dig @2001:4860:4860::8888 +time=2 aaaa +short "$domain" 2>/dev/null)
-            fi
-            if echo $domainIP | grep -q "network unreachable\|timed out" || [[ -z $domainIP ]] ; then
-                red "未解析出 IP，请检查域名是否输入有误" 
-                yellow "是否尝试强行匹配？"
-                green "1. 是，将使用强行匹配"
-                green "2. 否，退出脚本"
-                read -p "请输入选项 [1-2]：" ipChoice
-                if [[ $ipChoice == 1 ]]; then
-                    yellow "将尝试强行匹配以申请域名证书"
-                else
-                    red "将退出脚本"
-                    exit 1
-                fi
-            fi
+            domainIP=$(curl -sm8 ipget.net/?ip="${domain}")
             if [[ $domainIP == $ip ]]; then
                 ${PACKAGE_INSTALL[int]} curl wget sudo socat openssl
                 if [[ $SYSTEM == "CentOS" ]]; then
@@ -215,8 +199,8 @@ inst_pwd(){
 }
 
 inst_site(){
-    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [回车世嘉maimai日本网站]：" proxysite
-    [[ -z $proxysite ]] && proxysite="maimai.sega.jp"
+    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [默认首尔大学]：" proxysite
+    [[ -z $proxysite ]] && proxysite="en.snu.ac.kr"
     yellow "使用在 Hysteria 2 节点的伪装网站为：$proxysite"
 }
 
@@ -238,7 +222,7 @@ insthysteria(){
     fi
     ${PACKAGE_INSTALL} curl wget sudo qrencode procps iptables-persistent netfilter-persistent
 
-    wget -N https://raw.githubusercontent.com/yjyygydx/test-public/main/hysteria2/install_server.sh
+    wget -N https://raw.githubusercontent.com/Misaka-blog/hysteria-install/main/hy2/install_server.sh
     bash install_server.sh
     rm -f install_server.sh
 
@@ -246,7 +230,6 @@ insthysteria(){
         green "Hysteria 2 安装成功！"
     else
         red "Hysteria 2 安装失败！"
-        exit 1
     fi
 
     # 询问用户 Hysteria 配置
@@ -313,7 +296,7 @@ quic:
 fastOpen: true
 
 socks5:
-  listen: 127.0.0.1:5080
+  listen: 127.0.0.1:5678
 
 transport:
   udp:
@@ -333,9 +316,8 @@ EOF
     "initConnReceiveWindow": 33554432,
     "maxConnReceiveWindow": 33554432
   },
-  "fastOpen": true,
   "socks5": {
-    "listen": "127.0.0.1:5080"
+    "listen": "127.0.0.1:5678"
   },
   "transport": {
     "udp": {
@@ -344,43 +326,9 @@ EOF
   }
 }
 EOF
-    cat <<EOF > /root/hy/clash-meta.yaml
-mixed-port: 7890
-external-controller: 127.0.0.1:9090
-allow-lan: false
-mode: rule
-log-level: debug
-ipv6: true
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  enhanced-mode: fake-ip
-  nameserver:
-    - 8.8.8.8
-    - 1.1.1.1
-    - 114.114.114.114
-proxies:
-  - name: mzlwl-Hysteria2
-    type: hysteria2
-    server: $last_ip
-    port: $port
-    password: $auth_pwd
-    sni: $hy_domain
-    skip-cert-verify: true
-proxy-groups:
-  - name: Proxy
-    type: select
-    proxies:
-      - mzlwl-Hysteria2
-      
-rules:
-  - GEOIP,CN,DIRECT
-  - MATCH,Proxy
-EOF
-    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#mzlwl-Hysteria2"
+
+    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Hysteria2-misaka"
     echo $url > /root/hy/url.txt
-    nohopurl="hysteria2://$auth_pwd@$last_ip:$port/?insecure=1&sni=$hy_domain#mzlwl-Hysteria2"
-    echo $nohopurl > /root/hy/url-nohop.txt
 
     systemctl daemon-reload
     systemctl enable hysteria-server
@@ -396,11 +344,8 @@ EOF
     red "$(cat /root/hy/hy-client.yaml)"
     yellow "Hysteria 2 客户端 JSON 配置文件 hy-client.json 内容如下，并保存到 /root/hy/hy-client.json"
     red "$(cat /root/hy/hy-client.json)"
-    yellow "Clash Meta 客户端配置文件已保存到 /root/hy/clash-meta.yaml"
     yellow "Hysteria 2 节点分享链接如下，并保存到 /root/hy/url.txt"
     red "$(cat /root/hy/url.txt)"
-    yellow "Hysteria 2 节点单端口的分享链接如下，并保存到 /root/hy/url.txt"
-    red "$(cat /root/hy/url-nohop.txt)"
 }
 
 unsthysteria(){
@@ -535,36 +480,24 @@ showconf(){
     red "$(cat /root/hy/hy-client.yaml)"
     yellow "Hysteria 2 客户端 JSON 配置文件 hy-client.json 内容如下，并保存到 /root/hy/hy-client.json"
     red "$(cat /root/hy/hy-client.json)"
-    yellow "Clash Meta 客户端配置文件已保存到 /root/hy/clash-meta.yaml"
     yellow "Hysteria 2 节点分享链接如下，并保存到 /root/hy/url.txt"
     red "$(cat /root/hy/url.txt)"
-    yellow "Hysteria 2 节点单端口的分享链接如下，并保存到 /root/hy/url.txt"
-    red "$(cat /root/hy/url-nohop.txt)"
-}
-
-update_core(){
-    wget -N https://raw.githubusercontent.com/yjyygydx/test-public/main/hysteria2/install_server.sh
-    bash install_server.sh
-    
-    rm -f install_server.sh
 }
 
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                  ${RED}Hysteria 2 一键安装脚本${PLAIN}                  #"
+    echo -e "#                  ${GREEN}Hysteria 2 一键安装脚本${PLAIN}                  #"
     echo "#############################################################"
     echo ""
-    echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2${PLAIN}"
-    echo " -------------"
-    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria 2"
-    echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria 2 配置"
-    echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria 2 配置文件"
-    echo " -------------"
-    echo -e " ${GREEN}6.${PLAIN} 更新 Hysteria 2 内核"
-    echo " -------------"
-    echo -e " ${GREEN}0.${PLAIN} 退出脚本"
+    echo -e " ${GREEN}1.${PLAIN} ${GREEN}安装 Hysteria 2${PLAIN}"
+    echo -e " ${RED}2.${PLAIN} ${RED}卸载 Hysteria 2${PLAIN}"
+    echo " ------------------------------------------------------------"
+    echo -e " 3. 关闭、开启、重启 Hysteria 2"
+    echo -e " 4. 修改 Hysteria 2 配置"
+    echo -e " 5. 显示 Hysteria 2 配置文件"
+    echo " ------------------------------------------------------------"
+    echo -e " 0. 退出脚本"
     echo ""
     read -rp "请输入选项 [0-5]: " menuInput
     case $menuInput in
@@ -573,7 +506,6 @@ menu() {
         3 ) hysteriaswitch ;;
         4 ) changeconf ;;
         5 ) showconf ;;
-        6 ) update_core ;;
         * ) exit 1 ;;
     esac
 }
