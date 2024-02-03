@@ -5,7 +5,7 @@ green=$(tput setaf 2)
 reset=$(tput sgr0)
 
 echo "${bold}${green}**************************************************************${reset}"
-echo "${bold}${green}         **Hysteria2一键安装脚本***${reset}"
+echo "${bold}${green}               **Hysteria2一键安装脚本***${reset}"
 echo "${bold}${green}**************************************************************${reset}"
 read -p "按 Enter 键继续..."
 
