@@ -6,7 +6,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/yjyygydx/test-p
 ```
 Hysteria2：
 ```
-wget -N --no-check-certificate https://raw.githubusercontent.com/yjyygydx/test-public/main/hysteria2/hysteria.sh && bash hysteria.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/yjyygydx/test-public/main/hysteria2/hysteria.sh)
 ```
 
 NaiveProxy：
