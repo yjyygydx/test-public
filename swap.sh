@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-#Blog:https://
-
 Green="\033[32m"
 Font="\033[0m"
 Red="\033[31m" 
