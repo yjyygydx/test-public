@@ -28,7 +28,7 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/assign_ipv6.sh
 ```
 bash assign_ipv6.sh
 ```
-[ipv6配置模板](https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF.txt)
+点击：[ipv6配置模板](https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF.txt)
 
 ##
 
