@@ -12,23 +12,7 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/swap.sh && bash
 ```
 ##
 
-一键生成ipv6地址：
-```
-wget https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6.sh
-```
-下载完成后输入：
-```
-bash ipv6.sh
-```
-随机生成ipv6地址完成后再，一键添加ipv6地址（临时）：
-```
-wget https://raw.githubusercontent.com/yjyygydx/test-public/main/assign_ipv6.sh
-```
-下载完成后输入：
-```
-bash assign_ipv6.sh
-```
-ipv6配置模板：[点击查看](https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF.txt)
+批量生成IPv6使用说明：[点击](https://raw.githubusercontent.com/yjyygydx/test-public/main/%E6%89%B9%E9%87%8F%E7%94%9F%E6%88%90IPv6%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 
 ##
 
