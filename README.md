@@ -20,7 +20,7 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6.sh
 ```
 bash ipv6.sh
 ```
-生成ipv6地址后，一键添加ipv6地址（临时）：
+随机生成ipv6地址完成后再，一键添加ipv6地址（临时）：
 ```
 wget https://raw.githubusercontent.com/yjyygydx/test-public/main/assign_ipv6.sh
 ```
