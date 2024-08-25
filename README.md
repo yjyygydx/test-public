@@ -28,6 +28,7 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/assign_ipv6.sh
 ```
 bash assign_ipv6.sh
 ```
+##
 
 ## 联系方式
 
