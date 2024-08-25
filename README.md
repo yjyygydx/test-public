@@ -12,7 +12,7 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/swap.sh && bash
 ```
 ##
 
-批量生成IPv6使用说明：[点击](https://raw.githubusercontent.com/yjyygydx/test-public/main/assign_ipv6.sh)
+批量生成IPv6使用说明：[点击](https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6-doc)
 
 ##
 
