@@ -1,0 +1,59 @@
+【BBR加速一键安装】
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/bbr.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/bbr.sh
+bash bbr.sh
+
+【VPS日常管理一键脚本】（更改SSH默认端口号/管理系统防火墙/三网回程路由和延迟测试/管理BBR/解锁chatgpt、Netflix.../等等...）
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/manage_vps.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/manage_vps.sh
+bash manage_vps.sh
+
+【Reality一键安装】（1.Xray版-2.Singbox版）
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/reality.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/reality.sh
+bash reality.sh
+
+【Reality一键安装】（Singbox内核版本）
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/reality_singbox.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/reality_singbox.sh
+bash reality_singbox.sh
+
+【Reality一键安装】（Xray内核版本）
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/reality_xray.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/reality_xray.sh
+bash reality_xray.sh
+
+【Shadowsocks_rust一键安装】（安装SS和v2ray_plugin（无需域名））
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/ss.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/ss.sh
+bash ss.sh
+
+【Shadowsocks_rust一键安装】（安装SS和v2ray_plugin并开启tls加密（需要域名））
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/ss_rust_tls.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/ss_rust_tls.sh
+bash ss_rust_tls.sh
+
+【Vmess一键安装】（1.安装V2ray-VMESS-2.安装V2ray-VMESS+mKCP-3.安装V2ray-VMESS+TCP+TLS-4.安装V2ray-VMESS+WS+TLS(可过cdn)-5.安装V2ray-VLESS+TCP+TLS-6.安装V2ray-VLESS+WS+TLS(可过cdn)）
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/v2ray.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/v2ray.sh
+bash v2ray.sh
+
+【Vmess一键安装】（1.安装V2ray-VMESS-2.安装V2ray-VMESS+mKCP(无域名使用)-3.安装V2ray-VMESS+TCP+TLS-4.安装V2ray-VMESS+WS+TLS(推荐使用)）
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/vmess.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/vmess.sh
+bash vmess.sh
+
+【八合一脚本】
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/xray.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/xray.sh
+bash xray.sh
