@@ -16,6 +16,10 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/swap.sh && bash
 
 ##
 
+脚本使用说明：[点击](https://raw.githubusercontent.com/yjyygydx/test-public/main/script-doc)
+
+##
+
 ## 联系方式
 
 **联系：[GitHub](https://github.com/yjyygydx)**
