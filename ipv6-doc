@@ -1,20 +1,35 @@
-一键生成ipv6地址：
-
+【一键生成ipv6地址】：
 wget https://raw.githubusercontent.com/yjyygydx/test-public/main/ipv6.sh
-
 下载完成后输入：
-
 bash ipv6.sh
 
-随机生成ipv6地址完成后再，一键添加ipv6地址（临时）：
-
+【随机生成ipv6地址完成后再，一键添加ipv6地址（临时）】：
 wget https://raw.githubusercontent.com/yjyygydx/test-public/main/assign_ipv6.sh
-
 下载完成后输入：
-
 bash assign_ipv6.sh
 
-配置模板：
+【关闭防火墙】：
+sudo ufw disable
+
+【随机生成6个IPv6地址并写入ipv6.txt文件中】：
+bash ipv6.sh 2001:19f0:6001:5110:5400:5ff:fe12:95c6/64 6 128 > ipv6.txt
+
+【编辑ipv6.txt文件】：
+vi ipv6.txt
+
+【退出编辑】：
+:wq
+
+【ipv6.txt文件中的IPv6地址添加进enp1s0网卡】：
+bash assign_ipv6.sh enp1s0 ipv6.txt
+
+【安装xray】：
+bash -c "$(curl -s -L https://raw.githubusercontent.com/yjyygydx/test-public/main/reality_xray_ip.sh)"
+或
+wget https://raw.githubusercontent.com/yjyygydx/test-public/main/reality_xray_ip.sh
+bash reality_xray_ip.sh
+
+【配置模板】IPv6地址写入配置文件，重启后不丢失：
 
 ###### Ubuntu 18.04 及更高版本 ######
 
@@ -27,10 +42,12 @@ network:
   ethernets:
     enp1s0:
       addresses:
-        - 2001:19f0:4400:64f1:72ea:1da6:6c34:5a88/128
-        - 2001:19f0:4400:64f1:49da:0861:27b6:31cf/128
-        - 2001:19f0:4400:64f1:7a39:0194:4103:5f64/128
-        - 2001:19f0:4400:64f1:6d13:3b58:114f:28a3/128
+        - 2001:19f0:6001:5110:08b1:0922:60cf:06ed/128
+        - 2001:19f0:6001:5110:34c6:5ff3:3d60:7d7d/128
+        - 2001:19f0:6001:5110:1d70:0e40:4275:3e82/128
+        - 2001:19f0:6001:5110:342a:6c8f:1c29:4f7f/128
+        - 2001:19f0:6001:5110:135b:37b8:1952:284b/128
+        - 2001:19f0:6001:5110:0001:51f4:2eed:1583/128
 
 3. 应用配置：
 sudo netplan apply
@@ -44,7 +61,12 @@ sudo vi /etc/network/interfaces
 auto enp1s0
 iface enp1s0 inet6 static
     address 2001:19f0:4400:64f1:5400:5ff:fe09:2df1/64 
-    up /sbin/ip -6 addr add 2001:19f0:4400:64f1:524c:1be0:5f94:3a18/64 dev enp1s0
+    up /sbin/ip -6 addr add 2001:19f0:6001:5110:08b1:0922:60cf:06ed/128 dev enp1s0
+    up /sbin/ip -6 addr add 2001:19f0:6001:5110:34c6:5ff3:3d60:7d7d/128 dev enp1s0
+    up /sbin/ip -6 addr add 2001:19f0:6001:5110:1d70:0e40:4275:3e82/128 dev enp1s0
+    up /sbin/ip -6 addr add 2001:19f0:6001:5110:342a:6c8f:1c29:4f7f/128 dev enp1s0
+    up /sbin/ip -6 addr add 2001:19f0:6001:5110:135b:37b8:1952:284b/128 dev enp1s0
+    up /sbin/ip -6 addr add 2001:19f0:6001:5110:0001:51f4:2eed:1583/128 dev enp1s0
 
 3. 重启网络服务
 sudo systemctl restart networking
