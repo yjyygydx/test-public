@@ -20,6 +20,10 @@ wget https://raw.githubusercontent.com/yjyygydx/test-public/main/swap.sh && bash
 
 ##
 
+CloudflareWorkersVpn文件使用说明：[点击](https://raw.githubusercontent.com/yjyygydx/test-public/main/CloudflareWorkersVpn-doc)
+
+##
+
 ## 联系方式
 
 **联系：[GitHub](https://github.com/yjyygydx)**
