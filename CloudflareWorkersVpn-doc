@@ -1,1 +1,4 @@
-
+项目地址：https://github.com/wuqb2i4f/xray-config-toolkit
+项目路径：output/cloudflare
+目前版本：v1.4.2
+使用方法：Cloudflare部署Workers，编辑代码，复制粘贴CloudflareWorkersVpn文件内容，修改UUID，部署，部署成功后，目前有9个版块，每个版块都是一个订阅地址。
