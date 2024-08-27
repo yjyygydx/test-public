@@ -1,4 +1,4 @@
-/* github.com/wuqb2i4f/xray-config-toolkit - v1.4.1 */
+/* github.com/wuqb2i4f/xray-config-toolkit - v1.4.2 */
 
 export default {
   async fetch(request, env, ctx) {
@@ -171,9 +171,19 @@ const proxiesList = [
     data: 'https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix'
   },
   {
-    name: 'wuqb2i4f-custom',
+    name: 'wuqb2i4f-fragment',
     type: 'url',
-    data: 'https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/fragment/mix.json'
+    data: 'https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/json/custom/mix-fragment.json'
+  },
+  {
+    name: 'wuqb2i4f-balancer',
+    type: 'url',
+    data: 'https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/json/custom/mix-balancer.json'
+  },
+  {
+    name: 'itsyebekhe',
+    type: 'url',
+    data: 'https://raw.githubusercontent.com/itsyebekhe/HiN-VPN/main/subscription/normal/mix'
   },
   {
     name: 'yebekhe',
